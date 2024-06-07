@@ -50,9 +50,7 @@ function createAutocomplete(inputElement, suggestions) {
 
   
   // Call createAutocomplete for ITM input
-  var itmInput1 = document.getElementById('itmInput');
-  const itmSuggestions = ['ALR', 'NSH', 'ACY', 'NSY' ,'NDE', 'SFY']; // Your autocomplete suggestions for ITM input
-  createAutocomplete(itmInput1, itmSuggestions);
+  
   
   // Call createAutocomplete for PRODUCT CODE input
   var productInput1 = document.getElementById('productInput');
