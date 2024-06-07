@@ -40,12 +40,12 @@ document
 
     console.log("After awaiting: " + endDateInput);
   });
-var itmInput = document.getElementById("itmInput");
+var itmInput = null
 var productInput = document.getElementById("productInput");
 
 // Function to store the input values
 function storeInputValues1() {
-  itmValue = itmInput.value;
+  itmValue = null;
   productValue = productInput.value;
 
   // You can do whatever you want with the values here
@@ -54,19 +54,12 @@ function storeInputValues1() {
 }
 
 // Add event listeners to listen for changes in input values
-itmInput.addEventListener("input", storeInputValues1);
+
 productInput.addEventListener("input", storeInputValues1);
 
 // function to get the product value p1 to p8
 
-var P1Input = document.getElementById("P1");
-var P2Input = document.getElementById("P2");
-var P3Input = document.getElementById("P3");
-var P4Input = document.getElementById("P4");
-var P5Input = document.getElementById("P5");
-var P6Input = document.getElementById("P6");
-var P7Input = document.getElementById("P7");
-var P8Input = document.getElementById("P8");
+
 
 // Function to store the input values
 function storeInputValues2() {
@@ -93,15 +86,7 @@ function storeInputValues2() {
   
 }
 
-// Add event listeners to listen for changes in input values
-P1Input.addEventListener("input", storeInputValues2);
-P2Input.addEventListener("input", storeInputValues2);
-P3Input.addEventListener("input", storeInputValues2);
-P4Input.addEventListener("input", storeInputValues2);
-P5Input.addEventListener("input", storeInputValues2);
-P6Input.addEventListener("input", storeInputValues2);
-P7Input.addEventListener("input", storeInputValues2);
-P8Input.addEventListener("input", storeInputValues2);
+
 
 //START (apply buttom)
 console.log("test1:",ttProductCodes);
