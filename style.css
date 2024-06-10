@@ -101,7 +101,7 @@ select {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0.75rem;
-  margin-left: 1%; 
+  margin: 1%; 
 }
 
 .chart-container {
@@ -219,4 +219,22 @@ footer {
   z-index: 999; /* Set a high z-index value to bring it to the front */
 }
 
+#DCW_period {
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 0.25rem;
+}
 
+#ATR_period {
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 0.25rem;
+}
+
+input#itmInput {
+  visibility: hidden;
+}
