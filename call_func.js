@@ -76,7 +76,12 @@ document.getElementById("add_chart").addEventListener("click", function () {
  console.log("ATR_period:",ATR_period);
   DCW_period = document.getElementById('DCW_period').value;
   console.log("DCW_period:",DCW_period);
-  
+  if(ATR_period === ""){
+    ATR_period = 14;
+  }
+  if(DCW_period === ""){
+    DCW_period = 40;
+  }
 
 
   function getAllInputValues() {
