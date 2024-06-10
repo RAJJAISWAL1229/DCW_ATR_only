@@ -16,7 +16,7 @@
 
       <nav>
         <ul>
-          
+          <li><input type="text" id="itmInput" placeholder="ITM" /></li>
           <li>
             <input type="text" id="productInput" placeholder="PRODUCT CODE" />
           </li>
@@ -72,6 +72,7 @@
             
           </select>
         </div>
+        
         <div class="chart-selector-div">
           <label for="select-charts">Select Chart:</label>
           <select id="select-charts" name="select-charts">
@@ -79,12 +80,21 @@
             <option value="Bar Chart">Bar Chart</option>
             <option value="Line Chart">Line Chart</option>
             <option value="Pie Chart">Pie Chart</option>
-           
+            
           </select>
         </div>
+        <ul class="input-container">
+          <label for="DCW_period">DCW_Period:</label>
+          <input type="text" id="DCW_period" placeholder="" />
+          <label for="ATR_period">ATR_Period:</label>
+          <input type="text" id="ATR_period" placeholder="" />
+          
+        </ul>
+      
 
         <button type="button" id="add_chart">ADD</button>
         <button type="button" id="Reset_last">RESET</button>
+        
       </div>
       
       <div class="charts">
