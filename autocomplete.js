@@ -1,52 +1,65 @@
 function createAutocomplete(inputElement, suggestions) {
-    // Create a div to hold the suggestions
-    const suggestionContainer = document.createElement('div');
-    suggestionContainer.classList.add('autocomplete-suggestions');
-    suggestionContainer.setAttribute('data-input', inputElement.id);
-    
-    // Append the suggestion container after the input element
-    inputElement.parentNode.appendChild(suggestionContainer);
+  // Create a div to hold the suggestions
+  const suggestionContainer = document.createElement('div');
+  suggestionContainer.classList.add('autocomplete-suggestions');
+  suggestionContainer.setAttribute('data-input', inputElement.id);
   
-    // Event listener for input changes
-    inputElement.addEventListener('input', function() {
-      const inputValue = this.value.toLowerCase();
-      const filteredSuggestions = suggestions.filter(suggestion =>
-        suggestion.toLowerCase().includes(inputValue)
-      );
-      showSuggestions(filteredSuggestions, suggestionContainer);
-    });
-  
-    // Event listener to hide suggestions when clicking outside
-    document.addEventListener('click', function(event) {
-      if (!suggestionContainer.contains(event.target) && event.target !== inputElement) {
-        suggestionContainer.innerHTML = '';
+  // Append the suggestion container after the input element
+  inputElement.parentNode.appendChild(suggestionContainer);
+
+  // Event listener for input changes
+  inputElement.addEventListener('input', function() {
+    const inputValue = this.value.toLowerCase();
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(inputValue)
+    );
+    const sortedSuggestions = filteredSuggestions.sort((a, b) => {
+      // Prioritize suggestions that start with the input value
+      const aStartsWith = a.toLowerCase().startsWith(inputValue);
+      const bStartsWith = b.toLowerCase().startsWith(inputValue);
+      if (aStartsWith && !bStartsWith) {
+        return -1;
+      } else if (!aStartsWith && bStartsWith) {
+        return 1;
+      } else {
+        return a.localeCompare(b); // Regular alphabetical order
       }
     });
-  }
-  
-  // Function to display suggestions
-  function showSuggestions(suggestions, container) {
-    container.innerHTML = '';
-    suggestions.forEach(suggestion => {
-      const suggestionElement = document.createElement('div');
-      suggestionElement.classList.add('suggestion');
-      suggestionElement.textContent = suggestion;
-      suggestionElement.addEventListener('click', function() {
-        const inputId = container.getAttribute('data-input');
-        const inputElement = document.getElementById(inputId);
-        inputElement.value = suggestion;
-        container.innerHTML = '';
+    showSuggestions(sortedSuggestions, suggestionContainer);
+  });
 
-        // Trigger input event on the input element
-        const event = new Event('input', {
-          bubbles: true,
-          cancelable: true,
-        });
-        inputElement.dispatchEvent(event);
+  // Event listener to hide suggestions when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!suggestionContainer.contains(event.target) && event.target !== inputElement) {
+      suggestionContainer.innerHTML = '';
+    }
+  });
+}
+
+// Function to display suggestions
+function showSuggestions(suggestions, container) {
+  container.innerHTML = '';
+  suggestions.forEach(suggestion => {
+    const suggestionElement = document.createElement('div');
+    suggestionElement.classList.add('suggestion');
+    suggestionElement.textContent = suggestion;
+    suggestionElement.addEventListener('click', function() {
+      const inputId = container.getAttribute('data-input');
+      const inputElement = document.getElementById(inputId);
+      inputElement.value = suggestion;
+      container.innerHTML = '';
+
+      // Trigger input event on the input element
+      const event = new Event('input', {
+        bubbles: true,
+        cancelable: true,
       });
-      container.appendChild(suggestionElement);
+      inputElement.dispatchEvent(event);
     });
-  }
+    container.appendChild(suggestionElement);
+  });
+}
+
 
   
   // Call createAutocomplete for ITM input
