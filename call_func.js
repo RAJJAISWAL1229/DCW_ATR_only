@@ -1365,8 +1365,17 @@ YRR = commonPnL;
     console.log("clickCount", clickCount);
     console.log("previous_no", previous_no);
     clickCount=previous_no;
-
+    
   });
 
-
-
+document.getElementById("Reset_last").addEventListener("click", function () {
+  
+ 
+  removeChart(1);
+  removeChart(2);
+  removeChart(3);
+  removeChart(4);
+  clickCount = 0;
+  previous_no = 0;
+  
+});
