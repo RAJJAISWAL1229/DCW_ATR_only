@@ -22,6 +22,7 @@ var P6Value = null;
 var P7Value = null;
 var P8Value = null;
 var ttProductCodes = [];
+let previous_no = 0;
 document
   .getElementById("start_date")
   .addEventListener("input", async function () {
@@ -99,9 +100,16 @@ document.getElementById("add_chart").addEventListener("click", function () {
   }
   inputValues = getAllInputValues();
 
+
+
   clickCount++;
   if (clickCount === 5) {
     clickCount = 1;
+  }
+
+  previous_no++;
+  if (previous_no === 5) {
+    previous_no = 1;
   }
 });
 console.log("date:  " + startDateInput);
@@ -137,10 +145,10 @@ document
           startDateInput,
           endDateInput,
           productValue,
-          DCW_period
+          DCW_period 
         );
         console.log("Fetched data:", globalData_dcw);
-        const DCW = await calculateDCW(globalData_dcw, (DCW_period));
+        const DCW = await calculateDCW(globalData_dcw, (DCW_period ));
         console.log("DCW Values:", DCW);
         XRR = DCW.map((entry) => entry.Date);
         YRR = DCW.map((entry) => entry.DCW);
@@ -1354,12 +1362,11 @@ YRR = commonPnL;
     } catch (error) {
       console.error("Error:", error);
     }
+    console.log("clickCount", clickCount);
+    console.log("previous_no", previous_no);
+    clickCount=previous_no;
+
   });
 
-document.getElementById("Reset_last").addEventListener("click", function () {
-  if (clickCount < 0) {
-    clickCount = 0;
-  }
-  removeChart(clickCount);
-  clickCount--;
-});
+
+
