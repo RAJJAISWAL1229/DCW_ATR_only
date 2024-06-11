@@ -1,6 +1,8 @@
 // Purpose: This file contains the functions to create different types of charts using Plotly.js library
 //          and to remove the chart from the container.
 
+
+
 // create a bar chart
 function createBarChart(
 
@@ -217,4 +219,13 @@ function removeChart(clickCount) {
 }
 
 
+let containerNumber;
 
+function assignVariable(number) {
+    let containerNumber = number;
+    previous_no--;
+    removeChart(containerNumber);
+    clickCount = containerNumber-1;
+    console.log("clickCount extra", clickCount);  
+    console.log("Container number assigned:", containerNumber);
+}
